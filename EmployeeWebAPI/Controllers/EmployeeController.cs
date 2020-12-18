@@ -1,4 +1,5 @@
-﻿using EmployeePayrollMVC.Repository;
+﻿using EmployeePayrollMVC.Models.Common;
+using EmployeePayrollMVC.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,19 @@ namespace EmployeeWebAPI.Controllers
             {
                 return NotFound();
             }
-
             return Ok(result);
+        }
+
+        // Post: api/Employee
+        public IHttpActionResult Post(RegisterRequestModel employee)
+        {
+            EmployeeRepository repo = new EmployeeRepository();
+            var result = repo.RegisterEmployee(employee);
+            if (!result)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
     }
 }

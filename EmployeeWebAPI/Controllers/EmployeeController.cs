@@ -1,4 +1,5 @@
-﻿using EmployeePayrollMVC.Models.Common;
+﻿using EmployeePayrollMVC.Models;
+using EmployeePayrollMVC.Models.Common;
 using EmployeePayrollMVC.Repository;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,29 @@ namespace EmployeeWebAPI.Controllers
                 return NotFound();
             }
             return Ok();
+        }
+
+        // Put: api/Employee
+        public IHttpActionResult Put(Employee employee)
+        {
+            EmployeeRepository repo = new EmployeeRepository();
+            var result = repo.Update(employee);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
+        // Put: api/Employee
+        public IHttpActionResult Put(int id)
+        {
+            EmployeeRepository repo = new EmployeeRepository();
+            var result = repo.GetEmployee(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
     }
 }

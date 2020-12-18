@@ -59,5 +59,16 @@ namespace EmployeeWebAPI.Controllers
             }
             return Ok(result);
         }
+        // Delete: api/Employee
+        public IHttpActionResult Delete(int id)
+        {
+            EmployeeRepository repo = new EmployeeRepository();
+            var result = repo.DeleteEmployee(id);
+            if (result == 0)
+            {
+                return NotFound();
+            }
+            return Ok();
+        }
     }
 }
